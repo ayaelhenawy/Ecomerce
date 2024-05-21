@@ -1,5 +1,6 @@
 import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:my_project/ThemeToggleIcon.dart';
 
 class product_screen extends StatelessWidget {
   product_screen({Key? key}) : super(key: key);
@@ -72,6 +73,9 @@ class product_screen extends StatelessWidget {
         ),
         title: Text('Product Details'),
         backgroundColor: Color.fromARGB(255, 253, 214, 222),
+        actions: [
+          ThemeToggleIcon(), // Add the ThemeToggleIcon here
+        ],
       ),
       body: SingleChildScrollView(
         child: SafeArea(

@@ -1,22 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/ThemeNotifier.dart';
 import 'package:my_project/src/Login.dart';
 import 'package:my_project/src/auth/onboarding/view/page/onboarding_page.dart';
-import 'package:my_project/src/dashbord/view/page/dashboard_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:my_project/src/splash.dart';
+import 'package:my_project/start.dart';
 
-void main() async {
-  MaterialApp materialApp = MaterialApp(home: const OnBoardingPage());
+import 'package:provider/provider.dart';
 
-  runApp(materialApp);
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeNotifier(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    WidgetsFlutterBinding.ensureInitialized();
-    return MaterialApp(home: LoginScreen());
+    return Consumer<ThemeNotifier>(
+      builder: (context, themeNotifier, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          themeMode: themeNotifier.themeMode,
+          home: SplashScreen(),
+        );
+      },
+    );
   }
 }

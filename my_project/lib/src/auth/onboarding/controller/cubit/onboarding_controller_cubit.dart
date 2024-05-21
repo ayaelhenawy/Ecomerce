@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:my_project/src/Sign%20Up.dart';
 import 'package:my_project/src/auth/onboarding/model/onboarding_model.dart';
+import 'package:my_project/start.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'onboarding_controller_state.dart';
@@ -24,24 +25,23 @@ class OnboardingControllerCubit extends Cubit<OnboardingControllerState> {
     Navigator.push(
       context,
       MaterialPageRoute<void>(
-        builder: (BuildContext context) => const SignUp(),
+        builder: (BuildContext context) => Start(),
       ),
     );
   }
 
   List data = [
     OnboardingModel(
-      image: 'assets/splash_1.png',
+      image: 'assets/a1.jpg',
       title: 'Welcome to Tokoto, Let is shop !',
     ),
     OnboardingModel(
-      image: 'assets/splash_2.png',
-      title:
-          'We help people conect with store \naround United State of America',
+      image: 'assets/a2.jpg',
+      title: 'Black Friday Sale',
     ),
     OnboardingModel(
-      image: 'assets/splash_3.png',
-      title: 'We show the easy way to shop. \njust stay at home with us',
+      image: 'assets/a3.jpg',
+      title: 'We show the easy way to shops',
     ),
   ];
 }

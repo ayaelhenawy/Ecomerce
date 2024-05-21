@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/ThemeToggleIcon.dart';
 import 'package:my_project/src/ForgetPassword.dart';
 import 'package:my_project/src/JSON/users.dart';
 import 'package:my_project/src/SQLite/database_helper.dart';
 import 'package:my_project/src/Sign%20Up.dart';
-import 'package:my_project/src/dashbord/view/page/dashboard_page.dart'; // Import the DashboardPage
+import 'package:my_project/src/dashbord/view/page/dashboard_page.dart';
+// Import the ThemeToggleIcon
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -22,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _validateFields() {
     setState(() {
       _emailErrorText =
-          _emailController.text.isEmpty ? 'Please enter your email' : null;
+          _emailController.text.isEmpty ? ' enter your email' : null;
 
       _passwordErrorText = _passwordController.text.isEmpty
           ? 'Please enter your password'
@@ -36,57 +38,46 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-// Controller is used to take the value from user and pass it to database
-  final usrName = TextEditingController();
-  final password = TextEditingController();
-
-  bool isChecked = false;
-  bool isLoginTrue = false;
-
   final db = DatabaseHelper();
 
-  // Login Method
-  // We will take the value of text fields using controllers in order to verify whether details are correct or not
   login() async {
     Users? usrDetails = await db.getUser(_emailController.text);
     var res = await db.authenticate(Users(
         usrName: _emailController.text, password: _passwordController.text));
     if (res == true) {
-      // If result is correct then go to profile or home
       if (!mounted) return;
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => DashboardPage()));
     } else {
-      // Otherwise show the error message
       setState(() {
         isLoginTrue = true;
       });
     }
   }
 
+  bool isLoginTrue = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
-        backgroundColor: Color.fromARGB(255, 255, 244, 246),
+        backgroundColor: Color.fromARGB(255, 252, 229, 229),
+        actions: [
+          ThemeToggleIcon(), // Add the ThemeToggleIcon here
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
-          vertical: 50,
+          vertical: 5,
         ),
         width: MediaQuery.of(context).size.width,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              // Header image
-              Image.asset(
-                'assets/login (1).png', // Replace with your image asset path
-                height: 200,
-              ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 60),
               const Text(
                 'Welcome to my app!',
                 style: TextStyle(
@@ -108,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: const BorderSide(
-                        color: Color.fromARGB(255, 255, 244, 246), width: 1.0),
+                        color: Color.fromARGB(255, 252, 229, 229), width: 1.0),
                   ),
                 ),
               ),
@@ -130,25 +121,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
               MaterialButton(
-                elevation: 5.0,
-                color: const Color.fromARGB(255, 253, 214, 222),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 80),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                onPressed: _validateFields,
-                child: const Text(
-                  'Login',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
+                  elevation: 5.0,
+                  color: Color.fromARGB(255, 252, 229, 229),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 80),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
                   ),
-                ),
-              ),
+                  onPressed: _validateFields,
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Color.fromARGB(
+                          255, 124, 124, 124), // Set text color to white
+                      fontSize: 20, // Set font size
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
               if (isLoginTrue)
                 const Padding(
                   padding: EdgeInsets.only(top: 20),

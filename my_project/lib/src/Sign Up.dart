@@ -42,18 +42,14 @@ class _SignUpState extends State<SignUp> {
             Navigator.of(context).pop();
           },
         ),
-        backgroundColor: const Color.fromARGB(255, 255, 244, 246),
+        backgroundColor: Color.fromARGB(255, 252, 229, 229),
       ),
       body: Form(
         key: _formKey,
         child: ListView(
           padding: const EdgeInsets.all(20.0),
           children: <Widget>[
-            const SizedBox(height: 20),
-            Image.asset(
-              'assets/login (1).png',
-              height: 200,
-            ),
+            const SizedBox(height: 5),
             const SizedBox(height: 20),
             const SizedBox(height: 40),
             TextFormField(
@@ -105,28 +101,29 @@ class _SignUpState extends State<SignUp> {
             const SizedBox(height: 40),
             Center(
               child: SizedBox(
-                width: 150, // Set the width of the button
+                width: 150,
+                height: 60, // Set the width of the button
                 child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color.fromARGB(255, 255, 227, 227),
-                    ), // Set button background color
-                  ),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      signUp();
-                    }
-                  },
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      color: Colors.white, // Set text color to white
-                      fontSize: 16, // Set font size
-                      fontWeight: FontWeight.bold, // Set font weight to bold
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        Color.fromARGB(255, 252, 229, 229),
+                      ), // Set button background color
                     ),
-                  ),
-                ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        signUp();
+                      }
+                    },
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        color: Color.fromARGB(
+                            255, 87, 87, 87), // Set text color to white
+                        fontSize: 17, // Set font size
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
               ),
             ),
             const SizedBox(height: 20),
@@ -139,11 +136,12 @@ class _SignUpState extends State<SignUp> {
             const SizedBox(height: 20),
             Center(
               child: SizedBox(
-                width: 150, // Set the width of the button
+                width: 150,
+                height: 60, // Set the width of the button
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color.fromARGB(255, 255, 223, 223),
+                      Color.fromARGB(255, 252, 229, 229),
                     ), // Set button background color
                   ),
                   onPressed: () {
@@ -155,9 +153,10 @@ class _SignUpState extends State<SignUp> {
                   child: const Text(
                     'Log in',
                     style: TextStyle(
-                      color: Colors.white, // Set text color to white
-                      fontSize: 16, // Set font size
-                      fontWeight: FontWeight.bold, // Set font weight to bold
+                      color: Color.fromARGB(
+                          255, 87, 87, 87), // Set text color to white
+                      fontSize: 17, // Set font size
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

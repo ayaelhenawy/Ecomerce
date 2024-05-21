@@ -85,7 +85,7 @@ class AddToCartItem extends StatelessWidget {
                           ),
                           SizedBox(height: 8),
                           Text(
-                            'Quantity: ${productModel.availableQuantity ?? 0}',
+                            'Price: ${productModel.availableQuantity ?? 0}',
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w300,
