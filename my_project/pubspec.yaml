@@ -22,7 +22,10 @@ dependencies:
   fan_carousel_image_slider: ^0.1.2
   path: ^1.9.0
   shared_preferences: ^2.2.3
+  
   provider: ^6.1.2
+  flutter_launcher_icons: ^0.13.1
+  device_preview: ^1.1.0
 
 
    
@@ -37,6 +40,13 @@ flutter:
   assets:
     - assets/
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path_android: "assets/ecommerce-checkout-logo-white-grey-background_162944-7227.jpg"
+  image_path_ios: "assets/ecommerce-checkout-logo-white-grey-background_162944-7227.jpg"
+  adaptive_icon_background: "assets/playstore.png"
+  adaptive_icon_foreground: "assets/playstore.png"
 
 
   # Uncomment and add the images if needed
