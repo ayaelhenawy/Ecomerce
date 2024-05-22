@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_project/core2/lang/cubit/parent_cubit.dart';
 import 'package:my_project/src/dashbord/favorite/cubit/favorite_cubit.dart';
 import 'package:my_project/src/dashbord/modules/product/model/entity_model/product_model.dart';
 
@@ -55,7 +56,9 @@ class FavoriteItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          productModel.name ?? 'Product',
+                          productModel.name ??
+                              ParentCubit.instance.local['product'] ??
+                              'Product',
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -64,7 +67,9 @@ class FavoriteItem extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          productModel.desc ?? 'Description',
+                          productModel.desc ??
+                              ParentCubit.instance.local['description'] ??
+                              'Description',
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -73,7 +78,7 @@ class FavoriteItem extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Price: ${productModel.availableQuantity ?? 0}',
+                          '${ParentCubit.instance.local['price'] ?? 'Price'}: ${productModel.availableQuantity ?? 0}',
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w300,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_project/ThemeNotifier.dart';
 import 'package:my_project/src/Login.dart';
 import 'package:my_project/src/auth/onboarding/view/page/onboarding_page.dart';
+import 'package:my_project/src/dashbord/view/page/dashboard_page.dart';
 import 'package:my_project/src/splash.dart';
 import 'package:my_project/start.dart';
 
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData.light(),
           darkTheme: ThemeData.dark(),
           themeMode: themeNotifier.themeMode,
-          home: SplashScreen(),
+          home: DashboardPage(),
+          // home: SplashScreen(),
         );
       },
     );

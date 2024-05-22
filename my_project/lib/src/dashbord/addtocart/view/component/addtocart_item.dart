@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_project/core2/lang/cubit/parent_cubit.dart';
 import 'package:my_project/src/dashbord/addtocart/cubit/addtocart_cubit.dart';
 import 'package:my_project/src/dashbord/favorite/cubit/favorite_cubit.dart';
 import 'package:my_project/src/dashbord/modules/product/model/entity_model/product_model.dart';
@@ -67,7 +68,9 @@ class AddToCartItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            productModel.name ?? 'Product',
+                            productModel.name ??
+                                ParentCubit.instance.local['product'] ??
+                                'Product',
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -76,7 +79,9 @@ class AddToCartItem extends StatelessWidget {
                           ),
                           SizedBox(height: 8),
                           Text(
-                            productModel.desc ?? 'Description',
+                            productModel.desc ??
+                                ParentCubit.instance.local['description'] ??
+                                'Description',
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
@@ -85,7 +90,7 @@ class AddToCartItem extends StatelessWidget {
                           ),
                           SizedBox(height: 8),
                           Text(
-                            'Price: ${productModel.availableQuantity ?? 0}',
+                            '${ParentCubit.instance.local['price'] ?? 'Price'}: ${productModel.availableQuantity ?? 0}',
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w300,
@@ -113,7 +118,10 @@ class AddToCartItem extends StatelessWidget {
                         builder: (BuildContext context) {
                           int quantity = 1; // Initial quantity
                           return AlertDialog(
-                            title: Text('Select Quantity'),
+                            title: Text(
+                              ParentCubit.instance.local['select_quantity'] ??
+                                  'Select Quantity',
+                            ),
                             content: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -124,7 +132,9 @@ class AddToCartItem extends StatelessWidget {
                                     quantity = int.tryParse(value) ?? 1;
                                   },
                                   decoration: InputDecoration(
-                                    labelText: 'Quantity',
+                                    labelText: ParentCubit
+                                            .instance.local['quantity'] ??
+                                        'Quantity',
                                   ),
                                 ),
                               ],
@@ -137,9 +147,13 @@ class AddToCartItem extends StatelessWidget {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: Text('Purchase Complete'),
+                                        title: Text(
+                                          ParentCubit.instance
+                                                  .local['purchase_complete'] ??
+                                              'Purchase Complete',
+                                        ),
                                         content: Text(
-                                          'You have successfully purchased $quantity items.',
+                                          '${ParentCubit.instance.local['purchase_success']} $quantity ${ParentCubit.instance.local['items'] ?? 'items'}.',
                                         ),
                                         actions: <Widget>[
                                           TextButton(
@@ -147,27 +161,39 @@ class AddToCartItem extends StatelessWidget {
                                               Navigator.of(context).pop();
                                               Navigator.of(context).pop();
                                             },
-                                            child: Text('OK'),
+                                            child: Text(
+                                              ParentCubit
+                                                      .instance.local['ok'] ??
+                                                  'OK',
+                                            ),
                                           ),
                                         ],
                                       );
                                     },
                                   );
                                 },
-                                child: Text('Confirm'),
+                                child: Text(
+                                  ParentCubit.instance.local['confirm'] ??
+                                      'Confirm',
+                                ),
                               ),
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: Text('Cancel'),
+                                child: Text(
+                                  ParentCubit.instance.local['cancel'] ??
+                                      'Cancel',
+                                ),
                               ),
                             ],
                           );
                         },
                       );
                     },
-                    child: const Text("Purchase"),
+                    child: Text(
+                      ParentCubit.instance.local['purchase'] ?? 'Purchase',
+                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 255, 232, 223),
                       padding: const EdgeInsets.symmetric(

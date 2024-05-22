@@ -1,6 +1,9 @@
+// ignore_for_file: camel_case_types, use_super_parameters
+
 import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:my_project/ThemeToggleIcon.dart';
+import 'package:my_project/core2/lang/cubit/parent_cubit.dart';
 
 class product_screen extends StatelessWidget {
   product_screen({Key? key}) : super(key: key);
@@ -19,18 +22,25 @@ class product_screen extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Enter Quantity'),
+          title: Text(
+            ParentCubit.instance.local['enter_quantity'] ?? 'Enter Quantity',
+          ),
           content: TextField(
             controller: quantityController,
             keyboardType: TextInputType.number,
-            decoration: InputDecoration(hintText: 'Enter quantity'),
+            decoration: InputDecoration(
+              hintText: ParentCubit.instance.local['enter_quantity'] ??
+                  'Enter quantity',
+            ),
           ),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: Text(
+                ParentCubit.instance.local['cancel'] ?? 'Cancel',
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -40,20 +50,28 @@ class product_screen extends StatelessWidget {
                     // Implement your purchase logic here with the entered quantity
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('You have purchased $quantity item(s)'),
+                        content: Text(
+                          '${ParentCubit.instance.local['you_have_purchased']} $quantity ${ParentCubit.instance.local['items']}',
+                        ),
                       ),
                     );
                     Navigator.of(context).pop();
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Please enter a valid quantity'),
+                        content: Text(
+                          ParentCubit.instance
+                                  .local['please_enter_valid_quantity'] ??
+                              'Please enter a valid quantity',
+                        ),
                       ),
                     );
                   }
                 }
               },
-              child: Text('Purchase'),
+              child: Text(
+                ParentCubit.instance.local['purchase'] ?? 'Purchase',
+              ),
             ),
           ],
         );
@@ -71,7 +89,9 @@ class product_screen extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        title: Text('Product Details'),
+        title: Text(
+          ParentCubit.instance.local['product_details'] ?? 'Product Details',
+        ),
         backgroundColor: Color.fromARGB(255, 253, 214, 222),
         actions: [
           ThemeToggleIcon(), // Add the ThemeToggleIcon here
@@ -102,7 +122,7 @@ class product_screen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "T-Shirt",
+                          ParentCubit.instance.local['t_shirt'] ?? 'T-Shirt',
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w900,
@@ -111,7 +131,8 @@ class product_screen extends StatelessWidget {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          "Classic men Shirt",
+                          ParentCubit.instance.local['classic_men_shirt'] ??
+                              'Classic men Shirt',
                           style: TextStyle(
                             color: Colors.black54,
                             fontWeight: FontWeight.w500,
@@ -123,7 +144,9 @@ class product_screen extends StatelessWidget {
                       onPressed: () {
                         _showQuantityDialog(context);
                       },
-                      child: const Text("Purchase"),
+                      child: Text(
+                        ParentCubit.instance.local['purchase'] ?? 'Purchase',
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 255, 232, 223),
                         padding: const EdgeInsets.symmetric(

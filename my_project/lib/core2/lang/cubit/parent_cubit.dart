@@ -1,35 +1,28 @@
-import 'package:bloc/bloc.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:meta/meta.dart';
-import 'dart:convert'; // Add this import statement
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'parent_state.dart';
+part "parent_state.dart";
 
 class ParentCubit extends Cubit<ParentState> {
   static final ParentCubit instance = ParentCubit();
-  ThemeMode themeMode = ThemeMode.light;
 
+  Map<String, dynamic> local = {};
+  ThemeMode themeMode = ThemeMode.light;
+  String lang = 'en';
   ParentCubit() : super(ParentInitial()) {
     loadLanguage();
   }
-
-  Map<String, dynamic> local = {};
-
-  String lang = 'ar';
   Future<void> loadLanguage() async {
     String s = await rootBundle.loadString('assets/lang/$lang.json');
-    //   String s = await rootBundle.loadString('assets/lang/an.json');
-    local = json.decode(s);
+    local = await json.decode(s);
     emit(ParentInitial());
   }
 
   void changeLang() {
-    if (lang == 'ar') {
-      lang = 'an';
-    } else {
-      lang = 'ar';
-    }
+    lang = lang == 'ar' ? 'en' : 'ar';
     loadLanguage();
     emit(ParentInitial());
   }

@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_project/core2/lang/cubit/parent_cubit.dart';
 import 'package:my_project/src/dashbord/modules/product/cubit/product_cubit.dart';
 import 'package:my_project/src/dashbord/modules/product/model/entity_model/product_model.dart';
 import 'package:my_project/src/dashbord/product_screen/product_screen.dart';
@@ -64,7 +65,9 @@ class ProductItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            productModel.name ?? 'Product',
+                            productModel.name ??
+                                ParentCubit.instance.local['product'] ??
+                                'Product',
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -73,7 +76,9 @@ class ProductItem extends StatelessWidget {
                           ),
                           SizedBox(height: 8),
                           Text(
-                            productModel.desc ?? 'Description',
+                            productModel.desc ??
+                                ParentCubit.instance.local['description'] ??
+                                'Description',
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
@@ -82,7 +87,7 @@ class ProductItem extends StatelessWidget {
                           ),
                           SizedBox(height: 8),
                           Text(
-                            'Price: ${productModel.availableQuantity ?? 0}',
+                            '${ParentCubit.instance.local['price']} ${productModel.availableQuantity ?? 0}',
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w300,
@@ -133,8 +138,11 @@ class ProductItem extends StatelessWidget {
                         SnackBar(
                           content: Text(
                             productModel.cart == 0
-                                ? 'One item added to cart.'
-                                : 'Deleted.',
+                                ? ParentCubit.instance
+                                        .local['one_item_added_to_cart'] ??
+                                    'One item added to cart.'
+                                : ParentCubit.instance.local['deleted'] ??
+                                    'Deleted.',
                           ),
                         ),
                       );

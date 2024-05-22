@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_project/core2/lang/cubit/parent_cubit.dart';
 import 'package:my_project/src/dashbord/new_product/cubit/new_product_cubit.dart';
 
 class NewProductPage extends StatelessWidget {
@@ -16,9 +17,12 @@ class NewProductPage extends StatelessWidget {
           final NewProductCubit cubit = context.read<NewProductCubit>();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Add New Product'),
+              title: Text(
+                ParentCubit.instance.local['add_new_product'] ??
+                    'Add New Product',
+              ),
               centerTitle: true,
-              backgroundColor: Color.fromARGB(255, 255, 219, 219),
+              backgroundColor: const Color.fromARGB(255, 255, 219, 219),
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
@@ -26,7 +30,8 @@ class NewProductPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Product Name',
+                    ParentCubit.instance.local['product_name'] ??
+                        'Product Name',
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                   TextFormField(
@@ -34,7 +39,9 @@ class NewProductPage extends StatelessWidget {
                     keyboardType: TextInputType.name,
                     controller: cubit.nameController,
                     decoration: InputDecoration(
-                      hintText: 'Enter product name',
+                      hintText:
+                          ParentCubit.instance.local['enter_product_name'] ??
+                              'Enter product name',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
@@ -42,7 +49,7 @@ class NewProductPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   Text(
-                    'Description',
+                    ParentCubit.instance.local['description'] ?? 'Description',
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                   TextFormField(
@@ -50,7 +57,9 @@ class NewProductPage extends StatelessWidget {
                     keyboardType: TextInputType.text,
                     controller: cubit.desController,
                     decoration: InputDecoration(
-                      hintText: 'Enter product description',
+                      hintText: ParentCubit
+                              .instance.local['enter_product_description'] ??
+                          'Enter product description',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
@@ -58,7 +67,7 @@ class NewProductPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   Text(
-                    'Price',
+                    ParentCubit.instance.local['price'] ?? 'Price',
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                   TextFormField(
@@ -66,7 +75,9 @@ class NewProductPage extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     controller: cubit.qnController,
                     decoration: InputDecoration(
-                      hintText: 'Enter product Price',
+                      hintText:
+                          ParentCubit.instance.local['enter_product_price'] ??
+                              'Enter product Price',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
@@ -74,7 +85,8 @@ class NewProductPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   Text(
-                    'Product Image',
+                    ParentCubit.instance.local['product_image'] ??
+                        'Product Image',
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                   Row(
@@ -107,9 +119,9 @@ class NewProductPage extends StatelessWidget {
                   Center(
                     child: ElevatedButton(
                       onPressed: () => cubit.addProduct(context),
-                      child: const Text("Add Product"),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 255, 232, 223),
+                        backgroundColor:
+                            const Color.fromARGB(255, 255, 232, 223),
                         padding: const EdgeInsets.symmetric(
                           horizontal: 32.0,
                           vertical: 16.0,
@@ -117,6 +129,10 @@ class NewProductPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
+                      ),
+                      child: Text(
+                        ParentCubit.instance.local['add_product'] ??
+                            'Add Product',
                       ),
                     ),
                   ),

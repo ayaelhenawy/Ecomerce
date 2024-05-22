@@ -1,12 +1,12 @@
 name: my_project
 description: "A new Flutter project."
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.4 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -22,15 +22,13 @@ dependencies:
   fan_carousel_image_slider: ^0.1.2
   path: ^1.9.0
   shared_preferences: ^2.2.3
-  
+
   provider: ^6.1.2
   flutter_localizations:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1
   device_preview: ^1.1.0
 
-
-   
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -50,7 +48,6 @@ flutter_launcher_icons:
   image_path_ios: "assets/ecommerce-checkout-logo-white-grey-background_162944-7227.jpg"
   adaptive_icon_background: "assets/playstore.png"
   adaptive_icon_foreground: "assets/playstore.png"
-
 
   # Uncomment and add the images if needed
   # assets:
