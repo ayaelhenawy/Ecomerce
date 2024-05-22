@@ -1,10 +1,10 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_project/src/dashbord/addtocart/cubit/addtocart_cubit.dart';
 import 'package:my_project/src/dashbord/addtocart/view/component/addtocart_item.dart';
-import 'package:my_project/src/dashbord/favorite/cubit/favorite_cubit.dart';
-import 'package:my_project/src/dashbord/favorite/view/component/favorite_item.dart';
 import 'package:my_project/src/dashbord/modules/product/cubit/product_cubit.dart';
 
 class addtocartPage extends StatelessWidget {

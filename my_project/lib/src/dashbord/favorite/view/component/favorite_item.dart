@@ -7,10 +7,10 @@ import 'package:my_project/src/dashbord/modules/product/model/entity_model/produ
 
 class FavoriteItem extends StatelessWidget {
   const FavoriteItem({
-    Key? key,
+    super.key,
     required this.productModel,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ProductModel productModel;
   final favoriteCubit controller;
@@ -21,14 +21,14 @@ class FavoriteItem extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 255, 247, 247),
+          color: const Color.fromARGB(255, 255, 247, 247),
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 3,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             ),
           ],
           border: Border.all(color: Colors.grey, width: 0.5),
@@ -90,7 +90,7 @@ class FavoriteItem extends StatelessWidget {
                   ),
                 ],
               ),
-              Divider(thickness: 1, height: 32),
+              const Divider(thickness: 1, height: 32),
               // Actions
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -109,7 +109,7 @@ class FavoriteItem extends StatelessWidget {
                           productModel.favorite == 1 ? Colors.red : Colors.grey,
                     ),
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     thickness: 1,
                     color: Colors.black,
                   ),

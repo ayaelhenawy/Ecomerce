@@ -1,6 +1,7 @@
-import 'dart:typed_data';
+// ignore_for_file: camel_case_types
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 import 'package:my_project/src/dashbord/modules/product/cubit/product_cubit.dart';
 import 'package:my_project/src/dashbord/modules/product/model/entity_model/product_model.dart';

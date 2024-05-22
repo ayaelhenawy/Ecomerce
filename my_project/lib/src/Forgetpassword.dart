@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/core2/lang/cubit/parent_cubit.dart';
 
 import 'package:my_project/src/ResetPssword.dart';
 
@@ -14,7 +15,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Forgot Password'),
+        title: Text(
+          ParentCubit.instance.local['forget_password'] ?? 'Forgot Password',
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -29,23 +32,24 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 100),
-            const Text(
-              'Reset Password',
+            Text(
+              ParentCubit.instance.local['reset_password'] ?? 'Reset Password',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Enter your email address to reset your password',
+            Text(
+              ParentCubit.instance.local['reset_password_instruction'] ??
+                  'Enter your email address to reset your password',
               style: TextStyle(fontSize: 16, color: Colors.grey),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
             TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Email',
+              decoration: InputDecoration(
+                labelText: ParentCubit.instance.local['email'] ?? 'Email',
                 border: OutlineInputBorder(),
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -59,8 +63,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   return const ResetPassword();
                 }));
               },
-              child: const Text(
-                'Reset Password',
+              child: Text(
+                ParentCubit.instance.local['reset_password'] ??
+                    'Reset Password',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

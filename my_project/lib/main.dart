@@ -33,7 +33,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData.light(),
           darkTheme: ThemeData.dark(),
           themeMode: themeNotifier.themeMode,
-          home: DashboardPage(),
+          // home: DashboardPage(),
+          home: Start(),
           // home: SplashScreen(),
         );
       },

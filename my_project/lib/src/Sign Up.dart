@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/core2/lang/cubit/parent_cubit.dart';
 import 'package:my_project/src/JSON/users.dart';
 import 'package:my_project/src/Login.dart';
 import 'package:my_project/src/SQLite/database_helper.dart';
@@ -26,7 +27,11 @@ class _SignUpState extends State<SignUp> {
     } else {
       // Display an error message if the username already exists
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Username already exists')),
+        SnackBar(
+            content: Text(
+          ParentCubit.instance.local['username_exists'] ??
+              'Username already exists',
+        )),
       );
     }
   }
@@ -35,7 +40,9 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up'),
+        title: Text(
+          ParentCubit.instance.local['sign_up'] ?? 'Sign Up',
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -55,14 +62,17 @@ class _SignUpState extends State<SignUp> {
             TextFormField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter an email';
+                  return ParentCubit.instance.local['please_enter_email'] ??
+                      'Please enter an email';
                 } else if (!value.contains('@gmail.com')) {
-                  return 'Please enter a valid Gmail address';
+                  return ParentCubit
+                          .instance.local['please_enter_valid_gmail'] ??
+                      'Please enter a valid Gmail address';
                 }
                 return null;
               },
-              decoration: const InputDecoration(
-                hintText: 'Email',
+              decoration: InputDecoration(
+                hintText: ParentCubit.instance.local['email'] ?? 'Email',
                 prefixIcon: Icon(Icons.email),
               ),
               onSaved: (value) => _email = value!,
@@ -71,12 +81,14 @@ class _SignUpState extends State<SignUp> {
             TextFormField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter a User Name';
+                  return ParentCubit.instance.local['please_enter_user_name'] ??
+                      'Please enter a User Name';
                 }
                 return null;
               },
-              decoration: const InputDecoration(
-                hintText: 'User Name',
+              decoration: InputDecoration(
+                hintText:
+                    ParentCubit.instance.local['user_name_hint'] ?? 'User Name',
                 prefixIcon: Icon(Icons.person),
               ),
               onSaved: (value) => _name = value!,
@@ -85,14 +97,18 @@ class _SignUpState extends State<SignUp> {
             TextFormField(
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter a password';
+                  return ParentCubit.instance.local['enter_password'] ??
+                      'Please enter a password';
                 } else if (value.length < 8) {
-                  return 'Password must be at least 8 characters';
+                  return ParentCubit.instance.local['password_length_error'] ??
+                      'Password must be at least 8 characters';
                 }
+
                 return null;
               },
-              decoration: const InputDecoration(
-                hintText: 'Password',
+              decoration: InputDecoration(
+                hintText:
+                    ParentCubit.instance.local['password_hint'] ?? 'Password',
                 prefixIcon: Icon(Icons.lock),
               ),
               onSaved: (value) => _password = value!,
@@ -104,32 +120,33 @@ class _SignUpState extends State<SignUp> {
                 width: 150,
                 height: 60, // Set the width of the button
                 child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        Color.fromARGB(255, 252, 229, 229),
-                      ), // Set button background color
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 252, 229, 229),
+                    ), // Set button background color
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      signUp();
+                    }
+                  },
+                  child: Text(
+                    ParentCubit.instance.local['sign_up'] ?? 'Sign Up',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 87, 87, 87),
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
                     ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                        signUp();
-                      }
-                    },
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        color: Color.fromARGB(
-                            255, 87, 87, 87), // Set text color to white
-                        fontSize: 17, // Set font size
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )),
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 20),
-            const Center(
+            Center(
               child: Text(
-                'Already have an account?',
+                ParentCubit.instance.local['already_have_account'] ??
+                    'Already have an account?',
                 style: TextStyle(fontSize: 16),
               ),
             ),
@@ -150,12 +167,11 @@ class _SignUpState extends State<SignUp> {
                       return const LoginScreen();
                     }));
                   },
-                  child: const Text(
-                    'Log in',
+                  child: Text(
+                    ParentCubit.instance.local['login'] ?? 'Log in',
                     style: TextStyle(
-                      color: Color.fromARGB(
-                          255, 87, 87, 87), // Set text color to white
-                      fontSize: 17, // Set font size
+                      color: Color.fromARGB(255, 87, 87, 87),
+                      fontSize: 17,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

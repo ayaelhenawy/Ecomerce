@@ -3,16 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_project/core2/lang/cubit/parent_cubit.dart';
 import 'package:my_project/src/dashbord/addtocart/cubit/addtocart_cubit.dart';
-import 'package:my_project/src/dashbord/favorite/cubit/favorite_cubit.dart';
 import 'package:my_project/src/dashbord/modules/product/model/entity_model/product_model.dart';
 import 'package:my_project/src/dashbord/product_screen/product_screen.dart'; // Import the product_screen.dart file
 
 class AddToCartItem extends StatelessWidget {
   const AddToCartItem({
-    Key? key,
+    super.key,
     required this.productModel,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ProductModel productModel;
   final addtocartCubit controller;
@@ -23,13 +22,13 @@ class AddToCartItem extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 255, 247, 247),
+          color: const Color.fromARGB(255, 255, 247, 247),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 3,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             ),
           ],
           borderRadius: BorderRadius.circular(20),
@@ -62,7 +61,7 @@ class AddToCartItem extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(width: 16),
+                    const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +76,7 @@ class AddToCartItem extends StatelessWidget {
                               color: Colors.black,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(
                             productModel.desc ??
                                 ParentCubit.instance.local['description'] ??
@@ -88,7 +87,7 @@ class AddToCartItem extends StatelessWidget {
                               color: Colors.grey,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(
                             '${ParentCubit.instance.local['price'] ?? 'Price'}: ${productModel.availableQuantity ?? 0}',
                             style: const TextStyle(
@@ -103,9 +102,7 @@ class AddToCartItem extends StatelessWidget {
                   ],
                 ),
               ),
-
-              Divider(thickness: 1, height: 32),
-
+              const Divider(thickness: 1, height: 32),
               // Actions
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -191,11 +188,8 @@ class AddToCartItem extends StatelessWidget {
                         },
                       );
                     },
-                    child: Text(
-                      ParentCubit.instance.local['purchase'] ?? 'Purchase',
-                    ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 255, 232, 223),
+                      backgroundColor: const Color.fromARGB(255, 255, 232, 223),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 32.0,
                         vertical: 16.0,
@@ -204,13 +198,16 @@ class AddToCartItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
+                    child: Text(
+                      ParentCubit.instance.local['purchase'] ?? 'Purchase',
+                    ),
                   ),
-                  VerticalDivider(thickness: 1, color: Colors.black),
+                  const VerticalDivider(thickness: 1, color: Colors.black),
                   IconButton(
                     icon: Icon(
                       CupertinoIcons.delete,
                       color: productModel.cart == 1
-                          ? Color.fromARGB(255, 255, 160, 160)
+                          ? const Color.fromARGB(255, 255, 160, 160)
                           : Colors.grey,
                     ),
                     onPressed: () {

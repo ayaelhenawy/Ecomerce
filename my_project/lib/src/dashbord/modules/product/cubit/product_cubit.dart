@@ -1,6 +1,5 @@
-import 'dart:typed_data';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 import 'package:my_project/src/dashbord/modules/product/model/entity_model/product_model.dart';
 import 'package:my_project/src/dashbord/modules/product/model/repo/database_repo.dart';

@@ -8,10 +8,10 @@ import 'package:my_project/src/dashbord/product_screen/product_screen.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
-    Key? key,
+    super.key,
     required this.productModel,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ProductModel productModel;
   final ProductCubit controller;
@@ -22,12 +22,13 @@ class ProductItem extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 255, 247, 247),
+          color: const Color.fromARGB(255, 255, 247, 247),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 3,
+              // ignore: prefer_const_constructors
               offset: Offset(0, 2),
             ),
           ],
@@ -59,7 +60,7 @@ class ProductItem extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(width: 16),
+                    const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +75,7 @@ class ProductItem extends StatelessWidget {
                               color: Colors.black,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(
                             productModel.desc ??
                                 ParentCubit.instance.local['description'] ??
@@ -85,7 +86,7 @@ class ProductItem extends StatelessWidget {
                               color: Colors.grey,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(
                             '${ParentCubit.instance.local['price']} ${productModel.availableQuantity ?? 0}',
                             style: const TextStyle(
@@ -100,9 +101,7 @@ class ProductItem extends StatelessWidget {
                   ],
                 ),
               ),
-
-              Divider(thickness: 1, height: 32),
-
+              const Divider(thickness: 1, height: 32),
               // Actions
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -121,12 +120,12 @@ class ProductItem extends StatelessWidget {
                           productModel.id ?? 0, newFavoriteValue);
                     },
                   ),
-                  VerticalDivider(thickness: 1, color: Colors.black),
+                  const VerticalDivider(thickness: 1, color: Colors.black),
                   IconButton(
                     icon: Icon(
                       CupertinoIcons.cart,
                       color: productModel.cart == 1
-                          ? Color.fromARGB(255, 253, 168, 168)
+                          ? const Color.fromARGB(255, 253, 168, 168)
                           : Colors.grey,
                     ),
                     onPressed: () {

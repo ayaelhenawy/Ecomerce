@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/ThemeToggleIcon.dart';
+import 'package:my_project/core2/lang/cubit/parent_cubit.dart';
 import 'package:my_project/src/ForgetPassword.dart';
 import 'package:my_project/src/JSON/users.dart';
 import 'package:my_project/src/SQLite/database_helper.dart';
@@ -61,7 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: Text(
+          ParentCubit.instance.local['login'] ?? 'Login',
+        ),
         backgroundColor: Color.fromARGB(255, 252, 229, 229),
         actions: [
           ThemeToggleIcon(), // Add the ThemeToggleIcon here
@@ -78,8 +81,9 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               const SizedBox(height: 60),
-              const Text(
-                'Welcome to my app!',
+              Text(
+                ParentCubit.instance.local['welcome_message'] ??
+                    'Welcome to my app!',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -90,7 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
-                  hintText: 'User Name',
+                  hintText: ParentCubit.instance.local['user_name_hint'] ??
+                      'User Name',
                   errorText: _emailErrorText,
                   prefixIcon: const Icon(Icons.email),
                   border: OutlineInputBorder(
@@ -108,7 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: _passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
-                  hintText: 'Password',
+                  hintText:
+                      ParentCubit.instance.local['password_hint'] ?? 'Password',
                   errorText: _passwordErrorText,
                   prefixIcon: const Icon(Icons.password_outlined),
                   border: OutlineInputBorder(
@@ -123,23 +129,23 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 40),
               MaterialButton(
-                  elevation: 5.0,
-                  color: Color.fromARGB(255, 252, 229, 229),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 80),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
+                elevation: 5.0,
+                color: Color.fromARGB(255, 252, 229, 229),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 80),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                onPressed: _validateFields,
+                child: Text(
+                  ParentCubit.instance.local['login'] ?? 'Login',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 124, 124, 124),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                  onPressed: _validateFields,
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      color: Color.fromARGB(
-                          255, 124, 124, 124), // Set text color to white
-                      fontSize: 20, // Set font size
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )),
+                ),
+              ),
               if (isLoginTrue)
                 const Padding(
                   padding: EdgeInsets.only(top: 20),
@@ -156,8 +162,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     return const ForgetPassword();
                   }));
                 },
-                child: const Text(
-                  'Forget Password?',
+                child: Text(
+                  ParentCubit.instance.local['forget_password'] ??
+                      'Forget Password?',
                   style: TextStyle(
                     color: Color.fromARGB(255, 250, 189, 189),
                     fontSize: 20,
@@ -172,8 +179,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     return const SignUp();
                   }));
                 },
-                child: const Text(
-                  'Sign Up',
+                child: Text(
+                  ParentCubit.instance.local['sign_up'] ?? 'Sign Up',
                   style: TextStyle(
                     color: Color.fromARGB(255, 250, 189, 189),
                     fontSize: 20,
